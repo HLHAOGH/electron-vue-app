@@ -8,6 +8,8 @@ module.exports = {
 	pluginOptions: {
     // electron配置
 		electronBuilder: {
+      // 是否删除electron运行产生的垃圾（警告或错误提示信息）
+      removeElectronJunk: false
 			builderOptions: {
         productName: "小蜜蜂",  // 应用的名称
         copyright: "Copyright © 2023 HlHao",

@@ -1,5 +1,5 @@
 {
-  "name": "electron-vue-app",
+  "name": "小蜜蜂",
   "version": "0.1.0",
   "description": "a electron app",
   "private": true,
@@ -17,6 +17,7 @@
   },
   "main": "background.js",
   "dependencies": {
+    "@electron/remote": "^2.0.10",
     "core-js": "^3.6.5",
     "vue": "^2.6.11"
   },

@@ -29,3 +29,6 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 - win-unpacked 解压的electron 应用
 - index.js 编译过的background.js文件
 - background.js electron应用的入口文件
+
+### electron组件通讯：
+使用@electron/remote，直接操作electron

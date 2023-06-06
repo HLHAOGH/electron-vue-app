@@ -11,16 +11,26 @@ protocol.registerSchemesAsPrivileged([
 ])
 
 async function createWindow() {
-  // Create the browser window.
+  // 创建并控制浏览器窗口
   const win = new BrowserWindow({
     width: 800,
     height: 600,
+    // 网页功能设置
     webPreferences: {
-      
+      nativeWindowOpen: true, // 原生 window.open () 允许同步打开窗口
+      enableRemoteModule: true, // 将 JavaScript 对象从主进程桥接到渲染器进程
+      devTools: true,
+      webSecurity: true, // 是否启用同源策略
+      allowRunningInsecureContent: false, // 允许一个 https 页面运行来自http url的JavaScript, CSS 或 plugins
+      images: true, // 允许加载图片
+      webgl: true, //  启用 WebGL 支持
+      plugins: true, // 是否应该启用插件。默认值为 false
+      navigateOnDragDrop: false, // 将文件或链接拖放到页面上时是否触发页面跳转
+      spellcheck: true, // 是否启用内置拼写检查器
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
-      nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION,
-      contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION
+      nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION, // 是否启用Node integration节点继承
+      contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION // 是否在独立 JavaScript 环境中运行 Electron API和指定的preload 脚本. 默认为 true
     }
   })
 

@@ -1,6 +1,6 @@
 'use strict'
 
-import { app, protocol, BrowserWindow, Tray, Menu } from 'electron'
+import { app, protocol, BrowserWindow, Tray, Menu, ipcMain } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
 const path = require('path');
@@ -21,6 +21,7 @@ async function createWindow() {
     frame: true, // 创建无边框窗口（不能拖动窗口）
     // 网页功能设置
     webPreferences: {
+      preload: path.join(__dirname, 'preload.js'), // 加载预加载脚本
       nativeWindowOpen: true, // 原生 window.open () 允许同步打开窗口
       enableRemoteModule: true, // 将 JavaScript 对象从主进程桥接到渲染器进程
       devTools: true,
@@ -61,6 +62,8 @@ app.on('ready', async () => {
   //     console.error('Vue Devtools failed to install:', e.toString())
   //   }
   // }
+  ipcMain.handle('ping', () => 'pong');
+  
   createWindow();
   // 隐藏菜单栏
   // Menu.setApplicationMenu(null);
